@@ -8,7 +8,7 @@ const seed = async () => {
   await db.sync({force: true})
 
   // artists
-  const dexter = await Artist.create({name: 'Dexter Britain'})
+  const dexter = await Artist.create({name: 'Dexters Lab'})
   const jets = await Artist.create({name: 'Jets Overhead'})
   const nin = await Artist.create({name: 'Nine Inch Nails'})
 
