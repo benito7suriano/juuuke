@@ -8,8 +8,25 @@ router.get('/', async (req,res,next) => {
       include: [{ model: Artist }]
     })
 
-    res.send(albums)
+    res.json(albums)
   } catch (error) {next(error)}
+})
+
+// GET /api/albums/albumId
+
+router.get('/:albumId', async (req,res,next) => {
+  const albumId = req.params.albumId
+
+  try {
+    const album = await Album.findOne({
+      where: { id: albumId },
+      include: [{ model: Artist}, { model: Song }]
+    })
+
+    res.json(album)
+  } catch (error) {
+    next(error)
+  }
 })
 
 module.exports = router
