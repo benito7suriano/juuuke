@@ -7,7 +7,7 @@ const Albums = (props) => {
   return (
     <div className='container'>
       <div id='albums' className='row wrap'>
-        {albums.map(album => <Album key={album.id} album={album} />)}
+        { albums.map(album => <Album key={album.id} album={album} /> )}
       </div>
     </div>
   )
