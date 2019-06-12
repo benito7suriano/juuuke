@@ -1,13 +1,13 @@
 import React from 'react'
 import Album from './Album'
 
-const Albums = () => {
+const Albums = (props) => {
+  const { albums } = props
+
   return (
     <div className='container'>
       <div id='albums' className='row wrap'>
-        <Album name="Album Test 1" />
-
-        <Album name="Album Test 2" />
+        {albums.map(album => <Album key={album.id} album={album} />)}
       </div>
     </div>
   )
