@@ -10,16 +10,16 @@ export default class SingleAlbum extends React.Component {
     }
   }
 
-  // async componentDidMount() {
-  //   try {
-  //     const res = Axios.get(`/api/albums/${albumId}`)
-  //     const album = res.data
+  async componentDidMount() {
+    try {
+      const res = Axios.get(`/api/albums/${albumId}`)
+      const album = res.data
 
-  //     this.setState({ album })
-  //   } catch (error) {
-  //     console.log(`Error retreiving album data: ${error}`)
-  //   }
-  // }
+      this.setState({ album })
+    } catch (error) {
+      console.log(`Error retreiving album data: ${error}`)
+    }
+  }
 
   render() {
     const { selectedAlbum } = this.props
