@@ -42,6 +42,7 @@ export default class Main extends React.Component {
       selectedAlbum: {}
     }
     this.goToAlbum = this.goToAlbum.bind(this)
+    this.goBackToAlbums = this.goBackToAlbums.bind(this)
   }
 
   async componentDidMount() {
@@ -68,13 +69,18 @@ export default class Main extends React.Component {
     }
   }
 
+  goBackToAlbums() {
+    this.setState({ selectedAlbum: {} })
+  }
+
   render () {
     const { albums } = this.state
 
     return (
       <div id='main' className='row container'>
         {/* Sidebar */}
-        <Sidebar />
+        <Sidebar
+          goBackToAlbums={this.goBackToAlbums} />
         {/* Body */}
         {this.state.selectedAlbum.id
           ? <SingleAlbum
