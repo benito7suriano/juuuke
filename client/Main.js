@@ -18,6 +18,7 @@ export default class Main extends React.Component {
     this.goToAlbum = this.goToAlbum.bind(this)
     this.goBackToAlbums = this.goBackToAlbums.bind(this)
     this.playSong = this.playSong.bind(this)
+    this.pauseSong = this.pauseSong.bind(this)
   }
 
   async componentDidMount() {
@@ -56,6 +57,12 @@ export default class Main extends React.Component {
     this.setState({songPlaying: song})
   }
 
+  pauseSong() {
+    audio.pause()
+
+    this.setState({songPlaying: {}})
+  }
+
   render () {
     const { albums } = this.state
 
@@ -69,13 +76,17 @@ export default class Main extends React.Component {
           ? <SingleAlbum
             selectedAlbum={this.state.selectedAlbum}
             songPlaying={this.state.songPlaying}
-            playSong={this.playSong} />
+            playSong={this.playSong}
+            pauseSong={this.pauseSong} />
           : <Albums
             albums={albums}
             goToAlbum={this.goToAlbum} />
         }
         {/* Player */}
-        <Player />
+        <Player
+          songPlaying={this.state.songPlaying}
+          playSong={this.playSong}
+          pauseSong={this.pauseSong} />
       </div>
     )
   }

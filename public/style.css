@@ -59,6 +59,8 @@ td {
 }
 
 /* ids */
+
+
 #app {
   height: 100%;
   width: 100%;
@@ -133,6 +135,11 @@ td {
 }
 
 /* classes */
+
+.hidden {
+  display: none;
+}
+
 .album {
   margin: 1em;
 }
