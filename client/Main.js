@@ -6,18 +6,18 @@ import Player from './Player'
 import Axios from 'axios'
 
 const audio = document.createElement('audio')
-audio.src = 'https://learndotresources.s3.amazonaws.com/workshop/5616dbe5a561920300b10cd7/Dexter_Britain_-_03_-_The_Stars_Are_Out_Interlude.mp3'
-
 
 export default class Main extends React.Component {
   constructor() {
     super()
     this.state = {
       albums: [],
-      selectedAlbum: {}
+      selectedAlbum: {},
+      songPlaying: {}
     }
     this.goToAlbum = this.goToAlbum.bind(this)
     this.goBackToAlbums = this.goBackToAlbums.bind(this)
+    this.playSong = this.playSong.bind(this)
   }
 
   async componentDidMount() {
@@ -48,9 +48,12 @@ export default class Main extends React.Component {
     this.setState({ selectedAlbum: {} })
   }
 
-  playSong() {
+  playSong(song) {
+    audio.src = song.audioUrl
     audio.load()
     audio.play()
+
+    this.setState({songPlaying: song})
   }
 
   render () {
@@ -65,6 +68,7 @@ export default class Main extends React.Component {
         {this.state.selectedAlbum.id
           ? <SingleAlbum
             selectedAlbum={this.state.selectedAlbum}
+            songPlaying={this.state.songPlaying}
             playSong={this.playSong} />
           : <Albums
             albums={albums}

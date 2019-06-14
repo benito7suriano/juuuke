@@ -1,12 +1,18 @@
 import React from 'react'
 
 const Song = (props) => {
-  const { artist, playSong } = props
-  const { id, name, audioUrl, genre } = props.song
+  const { artist, song, playSong, songPlaying } = props
+  const { id, name, audioUrl, genre } = song
 
   return (
     <tr>
-      <td><i className='fa fa-play-circle' onClick={() => playSong()} /></td>
+      <td>
+        {
+          songPlaying.id !== song.id
+           ? <i className='fa fa-play-circle' onClick={() => playSong(song)} />
+           : <span></span>
+        }
+      </td>
       <td>{id}</td>
       <td>{name}</td>
       <td>{artist.name}</td>

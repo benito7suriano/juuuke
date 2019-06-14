@@ -22,7 +22,7 @@ export default class SingleAlbum extends React.Component {
   }
 
   render() {
-    const { selectedAlbum, playSong } = this.props
+    const { selectedAlbum, playSong, songPlaying } = this.props
 
     return (
       <div id='single-album' className='container'>
@@ -44,7 +44,7 @@ export default class SingleAlbum extends React.Component {
             </tr>
             {selectedAlbum.songs.map(
               song => {
-                return <Song playSong={playSong} key={song.id} artist={selectedAlbum.artist} song={song} />
+                return <Song playSong={playSong} key={song.id} artist={selectedAlbum.artist} song={song} songPlaying={songPlaying} />
               }
             )}
           </tbody>
