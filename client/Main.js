@@ -5,34 +5,9 @@ import SingleAlbum from './SingleAlbum'
 import Player from './Player'
 import Axios from 'axios'
 
-// const selectedAlbum = {
-//   'id': 3,
-//   'name': 'Chain React-ion',
-//   'artworkUrl': 'default-album.jpg',
-//   'artistId': 1,
-//   'artist': {
-//     'id': 1,
-//     'name': 'The Crash Test Dummies',
-//   },
-//   'songs': [
-//     {
-//       'id': 13,
-//       'name': 'Set Some State',
-//       'audioUrl': 'https://storage.googleapis.com/juke-1379.appspot.com/juke-music/Dexter%20Britain/Zenith/01%20Shooting%20Star.mp3',
-//       'genre': 'Instrumental',
-//       'albumId': 2,
-//       'artistId': 1
-//     },
-//     {
-//       'id': 14,
-//       'name': 'State state state',
-//       'audioUrl': 'https://storage.googleapis.com/juke-1379.appspot.com/juke-music/Dexter%20Britain/Zenith/01%20Shooting%20Star.mp3',
-//       'genre': 'Instrumental',
-//       'albumId': 2,
-//       'artistId': 1
-//     }
-//   ]
-// }
+const audio = document.createElement('audio')
+audio.src = 'https://learndotresources.s3.amazonaws.com/workshop/5616dbe5a561920300b10cd7/Dexter_Britain_-_03_-_The_Stars_Are_Out_Interlude.mp3'
+
 
 export default class Main extends React.Component {
   constructor() {
@@ -73,6 +48,11 @@ export default class Main extends React.Component {
     this.setState({ selectedAlbum: {} })
   }
 
+  playSong() {
+    audio.load()
+    audio.play()
+  }
+
   render () {
     const { albums } = this.state
 
@@ -84,7 +64,8 @@ export default class Main extends React.Component {
         {/* Body */}
         {this.state.selectedAlbum.id
           ? <SingleAlbum
-            selectedAlbum={this.state.selectedAlbum} />
+            selectedAlbum={this.state.selectedAlbum}
+            playSong={this.playSong} />
           : <Albums
             albums={albums}
             goToAlbum={this.goToAlbum} />
