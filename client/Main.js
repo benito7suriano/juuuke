@@ -24,6 +24,10 @@ export default class Main extends React.Component {
   }
 
   async componentDidMount() {
+    audio.addEventListener('ended', () => {
+      this.nextSong()
+    })
+
     try {
       const res = await Axios.get('/api/albums')
       const albums = res.data
