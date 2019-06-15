@@ -20,6 +20,7 @@ export default class Main extends React.Component {
     this.playSong = this.playSong.bind(this)
     this.pauseSong = this.pauseSong.bind(this)
     this.nextSong = this.nextSong.bind(this)
+    this.prevSong = this.prevSong.bind(this)
   }
 
   async componentDidMount() {
@@ -34,8 +35,6 @@ export default class Main extends React.Component {
   }
 
   async goToAlbum(albumId) {
-    console.log(typeof albumId)
-
     try {
       const res = await Axios.get(`/api/albums/${albumId}`)
       const selectedAlbum = res.data
@@ -78,9 +77,19 @@ export default class Main extends React.Component {
     this.setState({ songPlaying: nextSong })
   }
 
-  // prevSong(songPlaying, selectedAlbum) {
+  prevSong(songPlaying, selectedAlbum) {
+    let prevSong = {}
 
-  // }
+    selectedAlbum.songs.indexOf(songPlaying) === 0
+      ? prevSong = selectedAlbum.songs[selectedAlbum.songs.length - 1]
+      : prevSong = selectedAlbum.songs[selectedAlbum.songs.indexOf(songPlaying) - 1]
+
+    audio.src = prevSong.audioUrl
+    audio.load()
+    audio.play()
+
+    this.setState({ songPlaying: prevSong })
+  }
 
   render () {
     const { albums } = this.state
@@ -108,6 +117,7 @@ export default class Main extends React.Component {
           playSong={this.playSong}
           pauseSong={this.pauseSong}
           nextSong={this.nextSong}
+          prevSong={this.prevSong}
            />
       </div>
     )
