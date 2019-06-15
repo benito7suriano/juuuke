@@ -1,7 +1,7 @@
 import React from 'react'
 
 const Song = (props) => {
-  const { artist, song, playSong, songPlaying, pauseSong } = props
+  const { i, artist, song, playSong, songPlaying, pauseSong } = props
   const { id, name, audioUrl, genre } = song
 
   return (
@@ -16,7 +16,7 @@ const Song = (props) => {
            : <i className='fa fa-pause-circle' onClick={() => pauseSong(song)} />
         }
       </td>
-      <td>{id}</td>
+      <td>{i}</td>
       <td>{name}</td>
       <td>{artist.name}</td>
       <td>{genre}</td>

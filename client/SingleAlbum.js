@@ -25,7 +25,7 @@ const SingleAlbum = (props) => {
           </tr>
           {selectedAlbum.songs.map(
             (song,idx) => {
-              return <Song playSong={playSong} pauseSong={pauseSong} key={idx+1} artist={selectedAlbum.artist} song={song} songPlaying={songPlaying} />
+              return <Song playSong={playSong} pauseSong={pauseSong} key={idx+1} i={idx+1} artist={selectedAlbum.artist} song={song} songPlaying={songPlaying} />
             }
           )}
         </tbody>
