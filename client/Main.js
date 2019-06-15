@@ -19,6 +19,7 @@ export default class Main extends React.Component {
     this.goBackToAlbums = this.goBackToAlbums.bind(this)
     this.playSong = this.playSong.bind(this)
     this.pauseSong = this.pauseSong.bind(this)
+    this.nextSong = this.nextSong.bind(this)
   }
 
   async componentDidMount() {
@@ -63,6 +64,24 @@ export default class Main extends React.Component {
     this.setState({songPlaying: {}})
   }
 
+  nextSong(songPlaying, selectedAlbum) {
+    let nextSong = {}
+
+    selectedAlbum.songs.indexOf(songPlaying) === selectedAlbum.songs.length - 1
+      ? nextSong = selectedAlbum.songs[0]
+      : nextSong = selectedAlbum.songs[selectedAlbum.songs.indexOf(songPlaying) + 1]
+
+    audio.src = nextSong.audioUrl
+    audio.load()
+    audio.play()
+
+    this.setState({ songPlaying: nextSong })
+  }
+
+  // prevSong(songPlaying, selectedAlbum) {
+
+  // }
+
   render () {
     const { albums } = this.state
 
@@ -85,8 +104,11 @@ export default class Main extends React.Component {
         {/* Player */}
         <Player
           songPlaying={this.state.songPlaying}
+          selectedAlbum={this.state.selectedAlbum}
           playSong={this.playSong}
-          pauseSong={this.pauseSong} />
+          pauseSong={this.pauseSong}
+          nextSong={this.nextSong}
+           />
       </div>
     )
   }
